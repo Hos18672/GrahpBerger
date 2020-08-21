@@ -17,15 +17,14 @@ public class Graph {
     private Integer matrixA[][];
     private int exzentrizitaet[];
     private int posUnique[];
-    static final int NIL = -1;
-    int time = 0;
+
 
 
     private Integer[][] readCSVFile()
     {
         Integer[][] myArray = null;
         String inputLine = "";
-        String filelocation ="C:\\Users\\rezah\\OneDrive\\Desktop\\input_graph.csv";
+        String filelocation ="C:\\Users\\rezah\\OneDrive\\Desktop\\input_graph1.csv";
         System.out.println("....");
         try{
             //setup a scanner
@@ -116,30 +115,20 @@ public class Graph {
         }
     }
 
-
-    public void ermittle(){
+    public void ermittle() {
         int anzMultipliziert = 0;
-        while (anzMultipliziert < size){
+        while (anzMultipliziert < size) {
             Integer[][] multiply = multiply();
             anzMultipliziert++;
-            for (int i = 0; i < size; i++){
-                for (int j = 0; j < size; j++){
-                    if (distanceMatix[i][j] < 0 && multiply[i][j] > 0){
-                        distanceMatix[i][j]=anzMultipliziert+1;
-                    }
-                    else if (wegmatrix[i][j]== 0 && multiply[i][j] > 0){
-                        wegmatrix[i][j]=1;
+            for (int i = 0; i < size; i++) {
+                for (int j = 0; j < size; j++) {
+                    if (distanceMatix[i][j] < 0 && multiply[i][j] > 0) {
+                        distanceMatix[i][j] = anzMultipliziert + 1;
+                    } else if (wegmatrix[i][j] == 0 && multiply[i][j] > 0) {
+                        wegmatrix[i][j] = 1;
                     }
                 }
             }
-        }
-
-        System.out.println("\n\n------------ Print DistanceMatrix---------------------\n");
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
-                System.out.print(distanceMatix[i][j] +" ");
-            }
-            System.out.println();
         }
     }
 
@@ -152,11 +141,9 @@ public class Graph {
                 for (int index = 0; index < size; index++) {
                         sum = sum + matrixA[row][index] * AdjacencyMatrix2[index][col];
                 }
-
                 multiply[row][col] = sum;
             }
         }
-
         for(int i = 0; i < matrixA.length; i++){
             for(int j = 0; j < matrixA.length; j++){
                 matrixA[i][j] = multiply[i][j];
@@ -164,6 +151,16 @@ public class Graph {
         }
 
         return multiply;
+    }
+    public void PrintDistanceMatrix()
+    {
+        System.out.println("\n\n------------ Print DistanceMatrix---------------------\n");
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                System.out.print(distanceMatix[i][j] +" ");
+            }
+            System.out.println();
+        }
     }
     public void exzentrizitaet(){
         int max = 0;
@@ -193,7 +190,7 @@ public class Graph {
         this.radius = 999;
         this.durchmesser =0;
         for (int i = 0; i < exzentrizitaet.length; i++){
-            if (exzentrizitaet[i] < radius){
+            if (exzentrizitaet[i] < radius && exzentrizitaet[i] > -1 ){
                 radius = exzentrizitaet[i];
             }
             if (exzentrizitaet[i] > durchmesser){

@@ -9,6 +9,7 @@ public class Test {
         g.initialize();
         g.printGraph();
         g.ermittle();
+        g.PrintDistanceMatrix();
         g.exzentrizitaet();
         g.radiusUndDurchmesser();
         g.zentrum();
@@ -18,8 +19,7 @@ public class Test {
         System.out.print(g.komponentenanzahl());
         System.out.print("\n----------Komponenten--------------\n");
         System.out.print(g.komponenteAusgeben());
-       // System.out.print(g.artikulation());
-        // System.out.print(g.bruecken());
+
 
 
 
